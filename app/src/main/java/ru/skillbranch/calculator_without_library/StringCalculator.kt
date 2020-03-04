@@ -13,8 +13,7 @@ class StringCalculator {
         var numValue = ""
         val values = ArrayList<String>()
         for (i in input.indices) {
-            val chr = input[i]
-            when (chr) {
+            when (val chr = input[i]) {
                 '-', '+', '*', '/', '(', ')' -> if (i == 0 && chr == '-') {
                     numValue += chr
                 } else {
@@ -40,7 +39,7 @@ class StringCalculator {
 
     private fun parseValue(value: String): String {
         var value = value
-        var result: String? = null
+        var result: String?
 
         if (value.toLowerCase() == "pi" || value.toLowerCase() == "π") {
             result = Math.PI.toString()
@@ -207,58 +206,7 @@ class StringCalculator {
         }
         return result
     }
-
-    val resultAsInt: Int
-        get() {
-            var output = 0
-            output = if (result!!.contains(".")) {
-                result!!.substring(0, result!!.indexOf(".")).toInt()
-            } else {
-                result!!.toInt()
-            }
-            return output
-        }
-
-    val resultAsLong: Long
-        get() {
-            var output: Long = 0
-            output = if (result!!.contains(".")) {
-                result!!.substring(0, result!!.indexOf(".")).toLong()
-            } else {
-                result!!.toLong()
-            }
-            return output
-        }
-
-    val resultAsFloat: Float
-        get() = result!!.toFloat()
-
-    val resultAsDouble: Double
+    
+    private val resultAsDouble: Double
         get() = result!!.toDouble()
-
-    val resultAsBinary: String
-        get() {
-            var output: Long = 0
-            output = if (result!!.contains(".")) {
-                result!!.substring(0, result!!.indexOf(".")).toLong()
-            } else {
-                result!!.toLong()
-            }
-            return java.lang.Long.toBinaryString(output)
-        }
-
-    val resultAsHex: String
-        get() {
-            var output: Long = 0
-            output = if (result!!.contains(".")) {
-                result!!.substring(0, result!!.indexOf(".")).toLong()
-            } else {
-                result!!.toLong()
-            }
-            return java.lang.Long.toHexString(output)
-        }
-
-    fun setDebugging(debugging: Boolean) {
-        this.debugging = debugging
-    }
 }
